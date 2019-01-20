@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import InputMask from 'react-input-mask';
 import nameIcon from './name-icon.svg';
 import phoneIcon from './phone-icon.svg';
 import emailIcon from './email-icon.svg';
+import validatePhone from '../../function/validatePhone';
 
 const Form = styled.form`
-  margin-right: 150px;
+  box-sizing: border-box;
   width: 300px;
+  margin-right: 150px;
+  
+  @media (max-width: 768px) {
+    margin-right: 0;
+    padding: 10px 20px;
+    width: 100%;
+  }
 `;
 
 const StyledInput = styled.input`
   width: 100%;
   padding: 15px 0 15px 50px;
-  background-color: #f9f9f8;
+  background-color: ${props => (props.valid ? '#f9f9f8' : '#ffe4ea')};
   border: none;
   font-weight: 500;
 `;
@@ -38,13 +47,23 @@ const Button = styled.button`
   border: none;
   color: #fff;
   font-weight: 500;
-  border-radius: 3px;
+  border-radius: 3px;  
+  cursor: pointer;
 `;
 
-const Input = ({ placeholder, icon, name }) => (
+const Input = ({
+  placeholder, icon, name, as, mask, valid, onChange
+}) => (
   <InputWrapper>
     <Icon src={icon} />
-    <StyledInput name={name} placeholder={placeholder} />
+    <StyledInput
+      valid={valid}
+      as={as}
+      mask={mask}
+      name={name}
+      placeholder={placeholder}
+      onChange={onChange}
+    />
   </InputWrapper>
 );
 
@@ -53,16 +72,47 @@ export default class extends Component {
     super(props);
 
     this.state = {
-
+      email: '',
+      phone: '',
+      name: '',
+      isPhoneValid: true,
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const isPhoneValid = validatePhone(this.state.phone);
+    this.setState({
+      isPhoneValid,
+    });
+
+    if (isPhoneValid) {
+      this.props.handleSubmit();
+    }
+  }
+
+  handleInput(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   render() {
     return (
-      <Form>
-        <Input icon={nameIcon} placeholder="Имя" />
-        <Input icon={emailIcon} placeholder="Email" />
-        <Input icon={phoneIcon} placeholder="Телефон" />
+      <Form onSubmit={this.handleSubmit}>
+        <Input valid name="name" icon={nameIcon} placeholder="Имя" onChange={this.handleInput} />
+        <Input valid name="email" icon={emailIcon} placeholder="Email" onChange={this.handleInput} />
+        <Input
+          as={InputMask}
+          name="phone"
+          icon={phoneIcon}
+          placeholder="Телефон"
+          onChange={this.handleInput}
+          mask="+7 (999) 999-99-99"
+          valid={this.state.isPhoneValid}
+        />
         <Button>Получить результаты</Button>
       </Form>
     );

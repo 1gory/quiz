@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Button from '../generic/Button';
 import Title from '../generic/Title';
 import reasons from './reasons.png';
-import checklist from '../icons/checklist.svg';
+import Offer from '../generic/Offer';
 
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
@@ -16,30 +16,18 @@ const Content = styled.div`
   height: 620px;
 `;
 
-const Description = styled.div`
-  padding-top: 90px;
-  padding-left: 90px;
-`;
-
-const DescriptionTitle = styled.h2`
-
-`;
-
-const StyledPoint = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ChecklistImg = styled.img`
-  width: 22px;
-  padding: 15px 15px 20px 0;
-`;
-
 const Image = styled.img`
   position: absolute;
   width: 400px;
   bottom: 0;
   right: -70px;
+  z-index: -1;
+  
+  @media (max-width: 768px) {      
+    width: 240px;
+    bottom: 0;
+    right: 0px;
+  }
 `;
 
 const StartButton = styled(Button)`
@@ -59,13 +47,6 @@ const SubName = styled.div`
   font-size: 14px;
 `;
 
-const Point = ({ text }) => (
-  <StyledPoint>
-    <ChecklistImg src={checklist} />
-    {text}
-  </StyledPoint>
-);
-
 export default ({ currentStep, toNextStep }) => (
   <Wrapper hidden={currentStep !== 0}>
     <Content>
@@ -74,16 +55,14 @@ export default ({ currentStep, toNextStep }) => (
         <br />
         предложение по печати на чехлах
       </Title>
-      <Description>
-        <DescriptionTitle>
-          Ответьте на 8 простых вопросов
+      <Offer title={(
+        <span>
+          Ответьте на 8 простых вопросов и
           <br />
-          и получите совершенно бесплатно:
-        </DescriptionTitle>
-        <Point text="Сертификат на скидку до 30%" />
-        <Point text="Каталог всей нашей продукции" />
-        <Point text="Стоимость тиража под ключ" />
-      </Description>
+          получите совершенно бесплатно:
+        </span>
+        )}
+      />
       <Image src={reasons} />
       <StartButton onClick={toNextStep}>
         <ButtonName>пройти тест</ButtonName>

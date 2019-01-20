@@ -7,6 +7,11 @@ const Wrapper = styled.footer`
   // bottom: 0px;
   width: 100%;
   background-color: #444041;
+  
+  @media (max-width: 768px) {
+    // margin-top: 100px;
+    padding-bottom: 150px;
+  }
 `;
 
 const Content = styled.div`
@@ -15,6 +20,10 @@ const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ContactWrapper = styled.div`
@@ -22,35 +31,58 @@ const ContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    padding: 20px 0;
+  }
 `;
 
 const PrivacyPolicyLink = styled.a`
   color: #fff;
+  text-decoration: none;
+  
+  @media (max-width: 768px) {
+    padding-bottom: 20px;
+    order: 2;
+    font-size: 14px;
+  }
 `;
 
 const Copyright = styled.span`
   color: rgba(255, 255, 255, 0.25);
+   
+  @media (max-width: 768px) {
+    padding-bottom: 20px;
+    order: 3;
+    font-size: 14px;
+  }
 `;
 
 const MailLink = styled.a`
   color: #fff;
   display: inline-block;
   padding: 5px;
+  text-decoration: none;
+  
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const PhoneLink = styled.a`
   color: #fff;
   display: inline-block;
   padding: 5px;
+  text-decoration: none;
 `;
 
 export default () => (
   <Wrapper>
     <Content>
-      <PrivacyPolicyLink>Политика конфиденциальности</PrivacyPolicyLink>
+      <PrivacyPolicyLink href="./politika.html">Политика конфиденциальности</PrivacyPolicyLink>
       <ContactWrapper>
-        <PhoneLink>8 499 409 08 18</PhoneLink>
-        <MailLink>info@souvenirstudio.ru</MailLink>
+        <PhoneLink href="tel:+7(499)409-08-18">8 499 409 08 18</PhoneLink>
+        <MailLink href="mailto:info@souvenirstudio.ru">info@souvenirstudio.ru</MailLink>
       </ContactWrapper>
       <Copyright>© SouvenirStudio 2018, г. Москва</Copyright>
     </Content>

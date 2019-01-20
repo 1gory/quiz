@@ -14,12 +14,21 @@ const Content = styled.div`
   align-items: center;
   margin: 0 auto;
   max-width: 1200px;
+  
+  @media (max-width: 768px) {
+    height: 80px;
+    justify-content: flex-end;
+  }
 `;
 
 const Contacts = styled.div`
   display: flex;
   flex-direction: column; 
   align-items: flex-end;
+  
+  @media (max-width: 768px) {
+    padding-right: 20px;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -33,12 +42,32 @@ const LogoWrapper = styled.div`
   padding: 5px;
   border-radius: 70px;
   background: #fff;
+  
+  @media (max-width: 768px) {
+    width: 90px;
+    left: 12px;
+    top: 8px;
+    margin: 0;
+  }
 `;
+
+const Logo = styled.img`
+  width: 120px;
+  
+  @media (max-width: 768px) {
+    width: 90px;
+  }
+`;
+
 
 const Description = styled.span`
   display: flex;
   flex-direction: column; 
   color: #231f20;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const TopPart = styled.span`
@@ -46,10 +75,6 @@ const TopPart = styled.span`
 `;
 const BottomPart = styled.span`
   white-space: nowrap;
-`;
-
-const Logo = styled.img`
-  width: 120px;
 `;
 
 const CallbackLink = styled.a`
@@ -60,11 +85,21 @@ const CallbackLink = styled.a`
   padding-bottom: 2px;
   font-weight: bold;
   font-size: 14px;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const PhoneLink = styled.a`
   white-space: nowrap;
   font-size: 22px;
+  color: inherit;
+  text-decoration: none;
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export default () => (
@@ -78,7 +113,7 @@ export default () => (
         <a href="/"><Logo src={logo} /></a>
       </LogoWrapper>
       <Contacts>
-        <PhoneLink>8 499 409 08 18</PhoneLink>
+        <PhoneLink href="tel:+7(499)409-08-18">8 499 409 08 18</PhoneLink>
         <CallbackLink>Обратный звонок</CallbackLink>
       </Contacts>
     </Content>

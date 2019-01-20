@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+
 const Progress = styled.div`
   display: ${({ hidden }) => (hidden && 'none')};
   max-width: 1200px;
@@ -10,6 +16,10 @@ const Progress = styled.div`
   margin-top: 70px;
   background-color: #f7f6f5;
   border-radius: 3px;
+  
+  @media (max-width: 768px) {
+    margin-top: 45px;
+  }
 `;
 
 const ProgressComplete = styled.div`
@@ -20,7 +30,9 @@ const ProgressComplete = styled.div`
 `;
 
 export default ({ percents }) => (
-  <Progress hidden={percents === 0}>
-    <ProgressComplete percents={percents} />
-  </Progress>
+  <Wrapper>
+    <Progress hidden={percents === 0 || percents === 100}>
+      <ProgressComplete percents={percents} />
+    </Progress>
+  </Wrapper>
 );

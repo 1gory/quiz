@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'react-flexbox-grid';
-import Brands from './Brands';
+import Title from '../generic/StepTitle';
+import BrandsList from './BrandsList';
+import Brand from './Brand';
+import CustomBrand from './CustomBrand';
+import StepButtons from '../generic/StepButtons';
 
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
@@ -9,110 +13,51 @@ const Wrapper = styled.section`
   max-width: 1200px;
   margin: 0 auto;
   height: 620px;
+  
+  @media (max-width: 768px) {
+    height: auto;
+    margin-bottom: 100px;
+  }
 `;
 
 const RowWrapper = styled.div`
-  // margin-bottom: 150px;
-`;
-
-const BrandWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 15px;
-  text-align: center;
-  cursor: pointer;
-  padding: 30px 30px 0 30px;
-  background: ${({ selected }) => (selected ? '#f7f6f5' : 'inherit')}; 
-`;
-
-const BandLogoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-bottom: 20px;
-  height: 50px;
-  width: 100%;
-`;
-
-const Title = styled.h2`
-  text-align: center;
-  font-size: 30px;
-  font-weight: normal;
+  @media (max-width: 768px) {
+    margin: 0 8px;
+  }
 `;
 
 const Subtible = styled.div`
   text-align: center;
-`;
-
-const BrandLogo = styled.img`
-  max-height: 50px;
-  max-width: 100px;
-`;
-
-const BrandName = styled.span`
-  font-weight: 500;
-  font-size: 14px;
-  padding: 20px 0;
-`;
-
-const Button = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  border-radius: 3px;
-`;
-
-const StepButtonsWrapper = styled.div`
-  display: flex;
-`;
-
-const StepButton = styled.button`
-  background-color: #ff181f;
-  cursor: pointer;
-  padding: 30px;
-  border: none;
-
-  &:hover {
-    opacity: 0.7;
+  
+  @media (max-width: 768px) {
+    font-weight: 500;
+    font-size: 14px;
   }
 `;
-
-const PrevButton = styled(StepButton)`
-  border-radius: 3px 0 0 0;
-`;
-const NextButton = styled(StepButton)`
-  border-radius: 0 3px 0 0;
-`;
-
-const Brand = ({ logo, name, handleClick, selected }) => (
-  <Col xs={2} sm={2} md={2} lg={2}>
-    <BrandWrapper selected={selected === name} onClick={() => (handleClick(name))}>
-      <BandLogoWrapper>
-        <BrandLogo src={logo} />
-      </BandLogoWrapper>
-      <BrandName>{name}</BrandName>
-    </BrandWrapper>
-  </Col>
-);
 
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selected: 'iPhone',
-    };
+
+    this.state = {};
 
     this.handleClick = this.handleClick.bind(this);
+    this.isNextStepAllowed = this.isNextStepAllowed.bind(this);
+    this.changeCustomBrand = this.changeCustomBrand.bind(this);
   }
 
   handleClick(name) {
     this.setState({ selected: name });
+    this.props.onChange(name);
+  }
+
+  isNextStepAllowed() {
+    return (this.state.selected === 'Другой' && this.state.customBrand) || (this.state.selected && this.state.selected !== 'Другой');
+  }
+
+  changeCustomBrand(value) {
+    this.setState({ customBrand: value });
+    console.log(this.state);
   }
 
   render() {
@@ -124,23 +69,31 @@ export default class extends Component {
         <Subtible>В наличии чехлы на все модели</Subtible>
         <RowWrapper>
           <Row>
-            {Brands.map((brand, i) => (
-              <Brand
-                key={i}
-                name={brand.name}
-                logo={brand.logo}
+            {BrandsList.map((brand, i) => (
+              <Col xs={6} sm={2} md={2} lg={2}>
+                <Brand
+                  key={i}
+                  name={brand.name}
+                  logo={brand.logo}
+                  selected={selected}
+                  handleClick={this.handleClick}
+                />
+              </Col>
+            ))}
+            <Col xs={12} sm={2} md={2} lg={2}>
+              <CustomBrand
                 selected={selected}
                 handleClick={this.handleClick}
+                onChange={this.changeCustomBrand}
               />
-            ))}
+            </Col>
           </Row>
         </RowWrapper>
-        <Button>
-          <StepButtonsWrapper>
-            <PrevButton onClick={toPrevStep}>Назад</PrevButton>
-            <NextButton onClick={toNextStep}>Вперед</NextButton>
-          </StepButtonsWrapper>
-        </Button>
+        <StepButtons
+          disabled={!this.isNextStepAllowed()}
+          toPrevStep={toPrevStep}
+          toNextStep={toNextStep}
+        />
       </Wrapper>
     );
   }

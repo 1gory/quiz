@@ -12,4 +12,9 @@ export default styled.button`
   cursor: pointer;
   border-radius: 3px;
   border: none;
+  
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 50px;
+  }
 `;

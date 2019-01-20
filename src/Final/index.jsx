@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import StartButton from '../generic/Button';
+import Br from '../generic/MobBr';
 import Title from '../generic/Title';
+import Offer from '../generic/Offer';
 import Form from './Form';
-import checklist from '../icons/checklist.svg';
 import restart from './restart.svg';
 
 const Wrapper = styled.section`
@@ -15,30 +16,21 @@ const Content = styled.div`
   margin: 0 auto;
   max-width: 1200px;
   height: 620px;
-`;
-
-const Description = styled.div`
-  padding-left: 90px;
-`;
-
-const DescriptionTitle = styled.h2`
-  margin-top: 0;
-`;
-
-const StyledPoint = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ChecklistImg = styled.img`
-  width: 22px;
-  padding: 15px 15px 20px 0;
+  
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 const FormWrapper = styled.div`
-  padding-top: 90px;
   display: flex;
   justify-content: space-between;
+  
+  @media (max-width: 768px) {
+    padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const RestartButton = styled(StartButton)`
@@ -47,6 +39,12 @@ const RestartButton = styled(StartButton)`
   align-items: flex-end; 
   text-transform: uppercase;
   font-size: 14px;
+  background: none;
+  
+  @media (max-width: 768px) {   
+    position: inherit;
+    padding-top: 80px;
+  }
 `;
 
 const RestartIcon = styled.img`
@@ -54,33 +52,30 @@ const RestartIcon = styled.img`
   padding-right: 20px;
 `;
 
-const Point = ({ text }) => (
-  <StyledPoint>
-    <ChecklistImg src={checklist} />
-    {text}
-  </StyledPoint>
-);
+const onClick = () => {
+  if (typeof window !== 'undefined') {
+    window.location.href = '/';
+  }
+};
 
-export default ({ currentStep }) => (
-  <Wrapper hidden={currentStep !== 2}>
+export default ({ currentStep, handleSubmit }) => (
+  <Wrapper hidden={currentStep !== 9}>
     <Content>
       <Title>
-        Поздравляем! Вы прошли тест!
+        Поздравляем!<Br /> Вы прошли тест!
       </Title>
       <FormWrapper>
-        <Description>
-          <DescriptionTitle>
-            Ответьте на 8 простых вопросов
-            <br />
-            и получите совершенно бесплатно:
-          </DescriptionTitle>
-          <Point text="Стоимость тиража под ключ" />
-          <Point text="Сертификат на скидку до 30%" />
-          <Point text="Каталог всей нашей продукции" />
-        </Description>
-        <Form />
+        <Offer
+          title={(
+            <span>
+              Введите ваши данные для получения результатов теста.
+              Вы бесплатно получите:
+            </span>
+          )}
+        />
+        <Form handleSubmit={handleSubmit} />
       </FormWrapper>
-      <RestartButton>
+      <RestartButton onClick={onClick}>
         <RestartIcon src={restart} />
         пройти заново
       </RestartButton>

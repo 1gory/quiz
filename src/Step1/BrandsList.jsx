@@ -1,13 +1,13 @@
-import apple from './apple.svg';
-import samsung from './samsung.svg';
-import lenovo from './lenovo.svg';
-import htc from './htc.svg';
-import lg from './lg.svg';
-import huawei from './huawei.svg';
-import nokia from './nokia.svg';
-import sony from './sony.svg';
-import meizu from './meizu.svg';
-import asus from './asus.svg';
+import apple from './brands/apple.svg';
+import samsung from './brands/samsung.svg';
+import lenovo from './brands/lenovo.svg';
+import htc from './brands/htc.svg';
+import lg from './brands/lg.svg';
+import huawei from './brands/huawei.svg';
+import nokia from './brands/nokia.svg';
+import sony from './brands/sony.svg';
+import meizu from './brands/meizu.svg';
+import asus from './brands/asus.svg';
 
 export default [
   {

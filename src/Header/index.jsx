@@ -59,7 +59,6 @@ const Logo = styled.img`
   }
 `;
 
-
 const Description = styled.span`
   display: flex;
   flex-direction: column; 

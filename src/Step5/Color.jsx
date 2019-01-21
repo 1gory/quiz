@@ -8,9 +8,8 @@ const StyledColor = styled.div`
   background-color: ${props => (props.color)};
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 1px 1px ${props => (props.checked ? 'red' : '#ccc')} ;
+  ${props => (props.color === '#ffffff' && 'box-shadow: 0 0 1px 1px #ccc;')}
   border: 2px solid transparent;
-  
   ${props => (props.checked && 'border: 2px solid red;')}
 `;
 

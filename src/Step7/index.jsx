@@ -70,6 +70,15 @@ const Gallery = styled.div`
   // width: fit-content;
   padding-top: 35px;
   overflow: scroll;
+  
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background: #fff;
+  }
 `;
 
 const Img = styled.img`

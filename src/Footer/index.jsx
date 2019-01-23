@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.footer`
-  // position: fixed;
-  // left: 0px;
-  // bottom: 0px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
   width: 100%;
   background-color: #444041;
   
   @media (max-width: 768px) {
-    // margin-top: 100px;
+    position: inherit;
     padding-bottom: 150px;
   }
 `;
@@ -27,7 +27,7 @@ const Content = styled.div`
 `;
 
 const ContactWrapper = styled.div`
-  padding: 28px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,8 +40,10 @@ const ContactWrapper = styled.div`
 const PrivacyPolicyLink = styled.a`
   color: #fff;
   text-decoration: none;
+  padding-left: 20px;
   
   @media (max-width: 768px) {
+    padding-left: 0;
     padding-bottom: 20px;
     order: 2;
     font-size: 14px;
@@ -50,8 +52,10 @@ const PrivacyPolicyLink = styled.a`
 
 const Copyright = styled.span`
   color: rgba(255, 255, 255, 0.25);
+  padding-right: 20px;
    
   @media (max-width: 768px) {
+    padding-right: 20px;
     padding-bottom: 20px;
     order: 3;
     font-size: 14px;

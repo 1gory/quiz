@@ -4,7 +4,8 @@ export default styled.h2`
   text-align: center;
   font-size: 30px;
   font-weight: normal;
-  margin: 40px 0;
+  padding: 20px 0;
+  margin: 0;
   
   @media (max-width: 768px) {
     font-size: 20px;

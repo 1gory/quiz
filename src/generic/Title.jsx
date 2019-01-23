@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export default styled.h1`
-  margin-top: 90px;
-  margin-bottom: 90px;
+  padding: 60px 0;
+  margin: 0;
   text-align: center;
   font-size: 30px;
   font-weight: normal;
+  text-shadow: 1px 1px 2px white, 1px 1px 2px white;
   
   @media (max-width: 768px) {
     line-height: 1.56;

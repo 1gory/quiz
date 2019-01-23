@@ -9,9 +9,9 @@ import qty from './qty.svg';
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   position: relative;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  height: 620px;
+  height: calc(100vh - 205px);
   
   @media(max-width: 768px) {
     height: auto;
@@ -46,9 +46,9 @@ const CustomCount = styled.div`
 
 const Image = styled.img`
   position: absolute;
-  width: 300px;
-  bottom: 60px;
-  right: 50px;
+  width: 225px;
+  bottom: 50px;
+  right: 100px;
   
   @media(max-width: 768px) {
     display: none;  

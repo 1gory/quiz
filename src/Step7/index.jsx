@@ -18,9 +18,9 @@ import i9 from './9.jpg';
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   position: relative;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  height: 620px;
+  height: calc(100vh - 205px);
   
   @media (max-width: 768px) {
     height: auto;
@@ -44,7 +44,7 @@ const StyledChooseFilesButton = styled.button`
 const ChooseFilesButtonsWrapper = styled.div`
   margin: 0 auto;
   width: fit-content;
-  padding: 30px 0;
+  padding-bottom: 30px;
 `;
 
 const CatalogText = styled.a`
@@ -67,8 +67,7 @@ const Gallery = styled.div`
   display: flex;
   margin: 0 auto;
   width: inherit;
-  // width: fit-content;
-  padding-top: 35px;
+  padding-top: 15px;
   overflow: scroll;
   
   &::-webkit-scrollbar {

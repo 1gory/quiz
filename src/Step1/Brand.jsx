@@ -8,7 +8,7 @@ const BrandWrapper = styled.div`
   margin: 15px;
   text-align: center;
   cursor: pointer;
-  padding: 30px 30px 0 30px;
+  padding: 16px 30px 0 30px;
   background: ${({ selected }) => (selected ? '#f7f6f5' : 'inherit')}; 
 `;
 
@@ -17,7 +17,6 @@ const BandLogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 20px;
   height: 50px;
   width: 100%;
 `;

@@ -31,7 +31,7 @@ const Gallery = styled.div`
 `;
 
 const MainImage = styled.img`
-  max-width: 280px;
+  max-width: 235px;
 `;
 
 const Thumbs = styled.div`

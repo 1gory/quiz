@@ -17,6 +17,7 @@ import Step8 from './Step8';
 const Wrapper = styled.div`
   color: #231f20;
   font-family: 'GothamPro', sans-serif;
+  min-height: 100vh;
 `;
 
 const StepsCount = 9;

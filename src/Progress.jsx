@@ -9,11 +9,10 @@ const Wrapper = styled.div`
 
 const Progress = styled.div`
   display: ${({ hidden }) => (hidden && 'none')};
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  margin-top: 30px;
   height: 6px;
-  margin-top: 70px;
+  margin-top: 40px;
   background-color: #f7f6f5;
   border-radius: 3px;
   

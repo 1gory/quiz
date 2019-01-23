@@ -10,17 +10,19 @@ import colors from './colors';
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   position: relative;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  height: 620px;
+  height: calc(100vh - 205px);
   
   @media (max-width: 768px) {
     height: auto;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
   }
 `;
 
 const RowWrapper = styled.div`
+  padding-top: 20px;
+  
   @media (max-width: 768px) {
     margin: 0 8px;
     padding: 0 20px;

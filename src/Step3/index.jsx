@@ -8,9 +8,9 @@ import printingList from './printing';
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   position: relative;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
-  height: 620px;
+  height: calc(100vh - 205px);
   
   @media(max-width: 768px) {
     height: auto;  

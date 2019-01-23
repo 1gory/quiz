@@ -15,7 +15,7 @@ const Content = styled.div`
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
-  height: 620px;
+  height: calc(100vh - 160px);
   
   @media (max-width: 768px) {
     height: auto;

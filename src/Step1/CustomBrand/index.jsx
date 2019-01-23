@@ -20,28 +20,34 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isHidden: true,
+      isHidden: true,
     };
 
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isHidden: !prevState.isHidden,
+    }));
   }
 
   render() {
-    const { handleClick, selected } = this.props;
+    const { handleClick, onChange } = this.props;
+    const { isHidden } = this.state;
     return (
       <div>
         <Brand
           name="Другой"
           logoWidth={15}
           logo={plus}
-          selected={selected}
-          handleClick={handleClick}
+          handleClick={() => { this.handleClick(); handleClick(); }}
         />
 
-        <CustomBrandInputWrapper hidden={selected !== 'Другой'}>
+        <CustomBrandInputWrapper hidden={isHidden}>
           <CustomBrandInput
             placeholder="Название"
-            onChange={event => (this.props.onChange(event.target.value))}
+            onChange={event => (onChange(event.target.value))}
           />
         </CustomBrandInputWrapper>
       </div>

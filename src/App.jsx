@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Callback from './Popup/Callback';
+import Success from './Popup/Success';
 import Header from './Header';
 import Progress from './Progress';
 import Footer from './Footer';
@@ -13,6 +15,7 @@ import Step5 from './Step5';
 import Step6 from './Step6';
 import Step7 from './Step7';
 import Step8 from './Step8';
+import Popup from './Popup';
 
 const Wrapper = styled.div`
   color: #231f20;
@@ -26,22 +29,45 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      percents: 0,
-      currentStep: 0,
-    };
-
     this.toNextStep = this.toNextStep.bind(this);
     this.toPrevStep = this.toPrevStep.bind(this);
     this.onChange = this.onChange.bind(this);
-
+    this.onClick = this.onClick.bind(this);
+    this.closePopup = this.closePopup.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSendСallback = this.handleSendСallback.bind(this);
+
+    this.state = {
+      percents: 0,
+      currentStep: 0,
+      isPopupOpen: false,
+      popupType: <Callback handleSendСallback={this.handleSendСallback} />,
+    };
+  }
+
+  onClick() {
+    this.setState({
+      isPopupOpen: true,
+      popupType: <Callback handleSendСallback={this.handleSendСallback} />,
+    });
   }
 
   onChange(step, value) {
     const state = {};
     state[step] = value;
     this.setState(state);
+  }
+
+  closePopup() {
+    this.setState({
+      isPopupOpen: false,
+    });
+  }
+
+  handleSendСallback() {
+    this.setState({
+      popupType: <Success />,
+    });
   }
 
   toNextStep() {
@@ -59,16 +85,46 @@ export default class extends Component {
   }
 
   handleSubmit() {
-    console.log(this.state);
+    const {
+      brand, material, printing, count, color, date, file, packaging,
+    } = this.state;
+
+    const form = new FormData();
+
+    if (file) {
+      form.append('file', file.data);
+      form.append('file_name', file.name);
+    }
+
+    form.append('brand', brand);
+    form.append('material', material);
+    form.append('printing', printing);
+    form.append('count', count);
+    form.append('color', color);
+    form.append('date', date);
+    form.append('packaging', packaging);
+
+    fetch('/send.php', {
+      method: 'POST',
+      body: form,
+    }).then(async (response) => {
+      // const responseData = await response;
+      this.setState({
+        isPopupOpen: true,
+        popupType: <Success />,
+      });
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   render() {
     const {
-      percents, currentStep,
+      percents, currentStep, isPopupOpen, popupType,
     } = this.state;
     return (
       <Wrapper>
-        <Header />
+        <Header onClick={this.onClick} />
         <Progress percents={percents} />
         <Intro currentStep={currentStep} toNextStep={this.toNextStep} />
 
@@ -115,6 +171,7 @@ export default class extends Component {
         />
 
         <Step7
+          onChange={value => (this.onChange('file', value))}
           currentStep={currentStep}
           toNextStep={this.toNextStep}
           toPrevStep={this.toPrevStep}
@@ -133,7 +190,7 @@ export default class extends Component {
           toPrevStep={this.toPrevStep}
           handleSubmit={this.handleSubmit}
         />
-
+        <Popup isPopupOpen={isPopupOpen} closePopup={this.closePopup} popupType={popupType} />
         <Footer />
       </Wrapper>
     );

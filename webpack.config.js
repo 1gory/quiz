@@ -41,6 +41,14 @@ module.exports = {
         from: path.resolve(__dirname, 'public'),
         to: path.resolve(__dirname, 'build'),
       },
+      {
+        from: path.resolve(__dirname, 'send.php'),
+        to: path.resolve(__dirname, 'build'),
+      },
+      {
+        from: path.resolve(__dirname, 'app'),
+        to: path.resolve(__dirname, 'build/app'),
+      },
     ]),
   ],
   resolve: {

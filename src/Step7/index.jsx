@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
 import Title from '../generic/StepTitle';
 import StepButtons from '../generic/StepButtons';
 import uploadLogo from './upload.svg';
@@ -129,18 +129,19 @@ const ChooseFilesButton = ({ text, active, onClick }) => (
   </StyledChooseFilesButton>
 );
 
-const onDrop = (acceptedFiles) => {
+const onDrop = (acceptedFiles, rejectedFiles, onChange) => {
+  console.log(acceptedFiles);
   acceptedFiles.forEach((file) => {
-    console.log('check');
     const reader = new FileReader();
     reader.onload = () => {
       const fileAsBinaryString = reader.result;
+      onChange({ data: fileAsBinaryString, name: file.name });
       // do whatever you want with the file content
     };
     reader.onabort = () => console.log('file reading was aborted');
     reader.onerror = () => console.log('file reading has failed');
 
-    reader.readAsBinaryString(file);
+    reader.readAsDataURL(file);
   });
 };
 
@@ -162,7 +163,9 @@ export default class extends Component {
 
   render() {
     const { havePrints } = this.state;
-    const { currentStep, toPrevStep, toNextStep } = this.props;
+    const {
+      currentStep, toPrevStep, toNextStep, onChange,
+    } = this.props;
     return (
       <Wrapper hidden={currentStep !== 7}>
         <Title>У вас уже есть макеты для печати?</Title>
@@ -193,7 +196,11 @@ export default class extends Component {
           </div>
         )}
         { havePrints === true && (
-          <Dropzone onDrop={onDrop}>
+          <Dropzone
+            onDrop={
+              (acceptedFiles, rejectedFiles) => (onDrop(acceptedFiles, rejectedFiles, onChange))
+            }
+          >
             {({ getRootProps, getInputProps, isDragActive }) => (
               <div {...getRootProps()}>
                 <input {...getInputProps()} />

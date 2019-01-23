@@ -62,7 +62,9 @@ export default ({ currentStep, handleSubmit }) => (
   <Wrapper hidden={currentStep !== 9}>
     <Content>
       <Title>
-        Поздравляем!<Br /> Вы прошли тест!
+        Поздравляем!
+        <Br />
+        Вы прошли тест!
       </Title>
       <FormWrapper>
         <Offer

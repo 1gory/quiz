@@ -32,13 +32,37 @@ const BrandName = styled.span`
   padding: 20px 0;
 `;
 
-export default ({
-  logo, name, handleClick, selected, logoWidth,
-}) => (
-  <BrandWrapper selected={selected === name} onClick={() => (handleClick(name))}>
-    <BandLogoWrapper>
-      <BrandLogo width={logoWidth} src={logo} />
-    </BandLogoWrapper>
-    <BrandName>{name}</BrandName>
-  </BrandWrapper>
-);
+export default class extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isSelected: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(name) {
+    this.setState(prevState => ({
+      isSelected: !prevState.isSelected,
+    }));
+
+    this.props.handleClick(name);
+  }
+
+  render() {
+    const {
+      logo, name, logoWidth,
+    } = this.props;
+    const { isSelected } = this.state;
+    return (
+      <BrandWrapper selected={isSelected} onClick={() => (this.handleClick(name))}>
+        <BandLogoWrapper>
+          <BrandLogo width={logoWidth} src={logo} />
+        </BandLogoWrapper>
+        <BrandName>{name}</BrandName>
+      </BrandWrapper>
+    );
+  }
+}

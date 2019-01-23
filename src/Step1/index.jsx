@@ -23,6 +23,7 @@ const Wrapper = styled.section`
 const RowWrapper = styled.div`
   max-width: 992px;
   margin: 0 auto;
+  padding-top: 20px;
   
   @media (max-width: 768px) {
     margin: 0 8px;
@@ -42,7 +43,9 @@ export default class extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      selectedBrands: [],
+    };
 
     this.handleClick = this.handleClick.bind(this);
     this.isNextStepAllowed = this.isNextStepAllowed.bind(this);
@@ -50,17 +53,24 @@ export default class extends Component {
   }
 
   handleClick(name) {
-    this.setState({ selected: name });
-    this.props.onChange(name);
+    const { selectedBrands } = this.state;
+    const index = selectedBrands.indexOf(name);
+    if (index === -1) {
+      selectedBrands.push(name);
+    } else {
+      selectedBrands.splice(index, 1);
+    }
+
+    this.setState({ selectedBrands });
+    this.props.onChange(selectedBrands);
   }
 
   isNextStepAllowed() {
-    return (this.state.selected === 'Другой' && this.state.customBrand) || (this.state.selected && this.state.selected !== 'Другой');
+    return this.state.selectedBrands.length !== 0;
   }
 
   changeCustomBrand(value) {
     this.setState({ customBrand: value });
-    console.log(this.state);
   }
 
   render() {

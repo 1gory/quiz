@@ -3,16 +3,13 @@ import DDD from './DDD.png';
 import lacquer from './lacquer.png';
 import volumetric from './volumetric.png';
 import white from './white.png';
-import photo from './photo/photo.jpg';
-import photo2 from './photo/photo2.jpg';
-import photo3 from './photo/photo3.jpg';
 
 export default {
   white: {
     value: 'white',
     name: 'Печать белым',
     mainImg: white,
-    photos: [photo, photo2, photo3],
+    photos: ['/img/printing/white/1.jpg', '/img/printing/white/2.jpg', '/img/printing/white/3.jpg'],
     description: 'Подойдет: цветные, черные и прозрачные чехлы из любого материала',
     points: [
       'Невысокая стоимость тиража',
@@ -25,7 +22,7 @@ export default {
     value: 'color',
     name: 'Цветная печать',
     mainImg: color,
-    photos: [photo, photo2, photo3],
+    photos: ['/img/printing/color/1.jpg', '/img/printing/color/2.jpg', '/img/printing/color/3.jpg'],
     description: 'Подойдет: цветные, черные и прозрачные чехлы из любого материала',
     points: [
       'Невысокая стоимость тиража',
@@ -38,7 +35,11 @@ export default {
     value: 'lacquer',
     name: 'Печать лаком',
     mainImg: lacquer,
-    photos: [photo, photo2, photo3],
+    photos: [
+      '/img/printing/lacquer/1.jpg',
+      '/img/printing/lacquer/2.jpg',
+      '/img/printing/lacquer/3.jpg',
+    ],
     description: 'Подойдет: чехлы любого цвета и из любого материала',
     points: [
       'Невысокая стоимость тиража',
@@ -51,7 +52,11 @@ export default {
     value: 'volumetric',
     name: 'Объемная печать',
     mainImg: volumetric,
-    photos: [photo, photo2, photo3],
+    photos: [
+      '/img/printing/volumetric/1.jpg',
+      '/img/printing/volumetric/2.jpg',
+      '/img/printing/volumetric/3.jpg',
+    ],
     description: 'Подойдет: чехлы любого цвета и из любого материала',
     points: [
       'Невысокая стоимость тиража',
@@ -65,7 +70,7 @@ export default {
     name: '3D печать',
     submame: 'Объемная печать + печать лаком',
     mainImg: DDD,
-    photos: [photo, photo2, photo3],
+    photos: ['/img/printing/DDD/1.jpg', '/img/printing/DDD/2.jpg', '/img/printing/DDD/3.jpg'],
     description: 'Впервые в России уникальная авторская разработка принт на чехле как будто "оживает"',
     points: [
       'Визуально и тактильно',

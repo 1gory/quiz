@@ -82,6 +82,7 @@ const CallbackLink = styled.a`
   padding-bottom: 2px;
   font-weight: bold;
   font-size: 14px;
+  cursor: pointer;
   
   @media (max-width: 768px) {
     font-size: 14px;
@@ -99,7 +100,7 @@ const PhoneLink = styled.a`
   }
 `;
 
-export default () => (
+export default ({ onClick }) => (
   <Wrapper>
     <Content>
       <Description>
@@ -111,7 +112,7 @@ export default () => (
       </LogoWrapper>
       <Contacts>
         <PhoneLink href="tel:+7(499)409-08-18">8 499 409 08 18</PhoneLink>
-        <CallbackLink>Обратный звонок</CallbackLink>
+        <CallbackLink onClick={onClick}>Обратный звонок</CallbackLink>
       </Contacts>
     </Content>
   </Wrapper>

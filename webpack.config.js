@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const WEBPACK_DEV_SERVER_PORT = 8080;
-const DEV_SERVER_PORT = 3000;
+const DEV_SERVER_PORT = 3003;
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.jsx'),
@@ -42,12 +42,8 @@ module.exports = {
         to: path.resolve(__dirname, 'build'),
       },
       {
-        from: path.resolve(__dirname, 'send.php'),
-        to: path.resolve(__dirname, 'build'),
-      },
-      {
-        from: path.resolve(__dirname, 'app'),
-        to: path.resolve(__dirname, 'build/app'),
+        from: path.resolve(__dirname, 'server/api'),
+        to: path.resolve(__dirname, 'build/api'),
       },
     ]),
   ],

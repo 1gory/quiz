@@ -161,8 +161,14 @@ export default class extends Component {
     });
   }
 
+  onUpload() {
+    this.setState({
+      loaded: true,
+    });
+  }
+
   render() {
-    const { havePrints } = this.state;
+    const { havePrints, loaded } = this.state;
     const {
       currentStep, toPrevStep, toNextStep, onChange,
     } = this.props;
@@ -180,7 +186,9 @@ export default class extends Component {
         </ChooseFilesButtonsWrapper>
         { havePrints === false && (
           <div>
-            <CatalogText href="/">Можем предложить свой каталог принтов</CatalogText>
+            <CatalogText href="https://yadi.sk/d/lWHIG8mq3QEZhp" target="_blank">
+              Можем предложить свой каталог принтов
+            </CatalogText>
             <CatalogSubText>Более 9000 вариантов</CatalogSubText>
             <Gallery>
               <Img src={i1} />
@@ -198,7 +206,10 @@ export default class extends Component {
         { havePrints === true && (
           <Dropzone
             onDrop={
-              (acceptedFiles, rejectedFiles) => (onDrop(acceptedFiles, rejectedFiles, onChange))
+              (acceptedFiles, rejectedFiles) => {
+                this.onUpload();
+                onDrop(acceptedFiles, rejectedFiles, onChange);
+              }
             }
           >
             {({ getRootProps, getInputProps, isDragActive }) => (
@@ -207,7 +218,7 @@ export default class extends Component {
                 <UploadArea isDragActive={isDragActive}>
                   <UploadLogo src={uploadLogo} />
                   <UploadText>Выберите файл</UploadText>
-                  <UploadSubText>Или бросьте его сюда</UploadSubText>
+                  <UploadSubText>{loaded ? 'Файл загружен' : 'Или бросьте его сюда'}</UploadSubText>
                 </UploadArea>
               </div>
             )}

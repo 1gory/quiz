@@ -133,7 +133,7 @@ export default class extends Component {
           />
           <Packaging
             img={packaging3}
-            description="Коробка с европодвесом С дизайном souvenirstudio"
+            description="Коробка с европодвесом с дизайном souvenirstudio"
             price="от 15 рублей"
             name="souvenirstudio"
             onClick={this.onClick}
@@ -141,7 +141,7 @@ export default class extends Component {
           />
           <Packaging
             img={packaging4}
-            description="Коробка с европодвесом Со своим дизайном"
+            description="Коробка с европодвесом с Вашим дизайном"
             price="от 20 рублей"
             name="custom"
             onClick={this.onClick}

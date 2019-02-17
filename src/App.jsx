@@ -15,6 +15,7 @@ import Step5 from './Step5';
 import Step6 from './Step6';
 import Step7 from './Step7';
 import Step8 from './Step8';
+import SuccessPage from './SuccessPage';
 import Popup from './Popup';
 
 const Wrapper = styled.div`
@@ -84,7 +85,7 @@ export default class extends Component {
     }));
   }
 
-  handleSubmit() {
+  handleSubmit({ phone, name, email }) {
     const {
       brand, material, printing, count, color, date, file, packaging,
     } = this.state;
@@ -96,6 +97,9 @@ export default class extends Component {
       form.append('file_name', file.name);
     }
 
+    form.append('phone', phone);
+    form.append('name', name);
+    form.append('email', email);
     form.append('brand', brand);
     form.append('material', material);
     form.append('printing', printing);
@@ -104,15 +108,17 @@ export default class extends Component {
     form.append('date', date);
     form.append('packaging', packaging);
 
-    fetch('/send.php', {
+    this.toNextStep();
+
+    fetch('api/send.php', {
       method: 'POST',
       body: form,
     }).then(async (response) => {
       // const responseData = await response;
-      this.setState({
-        isPopupOpen: true,
-        popupType: <Success />,
-      });
+      // this.setState({
+      //   isPopupOpen: true,
+      //   popupType: <Success />,
+      // });
     }).catch((e) => {
       console.log(e);
     });
@@ -190,6 +196,11 @@ export default class extends Component {
           toPrevStep={this.toPrevStep}
           handleSubmit={this.handleSubmit}
         />
+
+        <SuccessPage
+          currentStep={currentStep}
+        />
+
         <Popup isPopupOpen={isPopupOpen} closePopup={this.closePopup} popupType={popupType} />
         <Footer />
       </Wrapper>

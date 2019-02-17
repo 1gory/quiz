@@ -1,6 +1,6 @@
-import express from 'express';
-import fs from 'fs';
-import path from 'path';
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
 
     return res.send(htmlData);
   });
+});
+
+app.get('*', (req, res) => {
+  console.log(`App listening on port ${req} ${req}!`);
+  return res.send('');
 });
 
 const PORT = process.env.PORT || 3000;

@@ -6,8 +6,8 @@
     top: 0;
     z-index: 99999;
     background-color: #fff;
-    -webkit-transition: opacity 1s;
-    transition: opacity 1s;
+    /*-webkit-transition: opacity 1s;*/
+    /*transition: opacity 1s;*/
 }
 
 .load__wrap {
@@ -133,6 +133,6 @@
     }
 }
 
-.load__hiden {
+.load__hidden {
     opacity: 0
 }

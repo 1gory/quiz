@@ -80,7 +80,7 @@ const DescriptionListItem = styled.li`
   
   &::before {
     content: "▪"; 
-    color: ff181f;
+    color: #ff181f;
     position: absolute;
   }
 `;

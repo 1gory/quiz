@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import InputMask from 'react-input-mask';
+import validatePhone from '../function/validatePhone';
 
 const Wraper = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const Title = styled.span`
 `;
 
 const Input = styled.input`
-  background-color: #f9f9f9;
+  background-color: ${props => (props.valid ? '#f9f9f8' : '#ffe4ea')};
   border: none;
   margin-bottom: 10px;
   padding: 10px 20px;
@@ -34,7 +36,7 @@ export default class extends Component {
     super(props);
 
     this.state = {
-
+      isPhoneValid: true,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,32 +50,48 @@ export default class extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const form = new FormData();
-    const { name, phone } = this.state;
-    console.log(name, phone);
-    form.append('name', name);
-    form.append('phone', phone);
-    fetch('/send.php', {
-      method: 'POST',
-      body: form,
-    }).then(async (response) => {
-      // const responseData = await response;
-      this.setState({
-        isPopupOpen: true,
-      });
-    }).catch((e) => {
-      console.log(e);
+    const isPhoneValid = validatePhone(this.state.phone);
+
+    this.setState({
+      isPhoneValid,
     });
 
-    this.props.handleSendСallback();
+    if (isPhoneValid) {
+      const form = new FormData();
+      const { name, phone } = this.state;
+      form.append('name', name);
+      form.append('callback', true);
+      form.append('phone', phone);
+      fetch('api/send.php', {
+        method: 'POST',
+        body: form,
+      }).then(async (response) => {
+        // const responseData = await response;
+        // this.setState({
+        //   isPopupOpen: true,
+        // });
+      }).catch((e) => {
+        console.log(e);
+      });
+
+      this.props.handleSendСallback();
+    }
   }
 
   render() {
     return (
       <Wraper>
         <Title>Заказать звонок</Title>
-        <Input name="phone" placeholder="Телефон" onChange={this.handleInput} />
-        <Input name="name" placeholder="Имя" onChange={this.handleInput} />
+        <Input valid name="name" placeholder="Имя" onChange={this.handleInput} />
+        <Input
+          as={InputMask}
+          valid={this.state.isPhoneValid}
+          name="phone"
+          mask="+7 (999) 999-99-99"
+          placeholder="Телефон"
+          onChange={this.handleInput}
+        />
+        <input type="hidden" name="callback" value={1} />
         <Button onClick={this.handleSubmit} type="submit">Заказать</Button>
       </Wraper>
     );

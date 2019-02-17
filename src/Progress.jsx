@@ -30,7 +30,7 @@ const ProgressComplete = styled.div`
 
 export default ({ percents }) => (
   <Wrapper>
-    <Progress hidden={percents === 0 || percents === 100}>
+    <Progress hidden={percents === 0 || percents >= 100}>
       <ProgressComplete percents={percents} />
     </Progress>
   </Wrapper>

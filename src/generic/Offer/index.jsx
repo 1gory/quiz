@@ -47,7 +47,7 @@ export default ({ title }) => (
     <DescriptionTitle>
       {title}
     </DescriptionTitle>
-    <Point text={<PointText>Сертификат на скидку до 30%</PointText>} />
+    <Point text={<PointText>Сигнальные образцы</PointText>} />
     <Point text={<PointText>Каталог всей нашей <Br />продукции</PointText>} />
     <Point text={<PointText>Стоимость тиража<Br /> под ключ</PointText>} />
   </Description>

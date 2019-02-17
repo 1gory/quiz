@@ -20,6 +20,7 @@ const Form = styled.form`
 
 const StyledInput = styled.input`
   width: 100%;
+  box-sizing: border-box;
   padding: 15px 0 15px 50px;
   background-color: ${props => (props.valid ? '#f9f9f8' : '#ffe4ea')};
   border: none;
@@ -43,7 +44,7 @@ const Icon = styled.img`
 const Button = styled.button`
   padding: 15px;
   width: 100%;
-  background: #ff181f;
+  background: ${props => (props.disabled ? '#ff6067' : '#ff181f')};
   border: none;
   color: #fff;
   font-weight: 500;
@@ -76,6 +77,7 @@ export default class extends Component {
       phone: '',
       name: '',
       isPhoneValid: true,
+      isButtonDisabled: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -90,7 +92,10 @@ export default class extends Component {
     });
 
     if (isPhoneValid) {
-      this.props.handleSubmit();
+      this.setState({
+        isButtonDisabled: true,
+      });
+      this.props.handleSubmit(this.state);
     }
   }
 
@@ -100,6 +105,7 @@ export default class extends Component {
   }
 
   render() {
+    const { isButtonDisabled, isPhoneValid } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Input valid name="name" icon={nameIcon} placeholder="Имя" onChange={this.handleInput} />
@@ -111,9 +117,9 @@ export default class extends Component {
           placeholder="Телефон"
           onChange={this.handleInput}
           mask="+7 (999) 999-99-99"
-          valid={this.state.isPhoneValid}
+          valid={isPhoneValid}
         />
-        <Button>Получить результаты</Button>
+        <Button disabled={isButtonDisabled}>Получить результаты</Button>
       </Form>
     );
   }

@@ -1,45 +1,56 @@
 import silicone from './silicone.jpg';
 import plastic from './plastic.jpg';
 import softtouch from './softtouch.jpg';
-import photo from './photo/photo.jpg';
-import photo2 from './photo/photo2.jpg';
-import photo3 from './photo/photo3.jpg';
 
 export default {
   silicone: {
     value: 'silicone',
     name: 'Силикон',
     mainImg: silicone,
-    photos: [photo, photo2, photo3],
-    description: 'Удобные силиконовые чехлы приятно держать в руке. Мягкий и гибкий материал отлично предохраняет телефон от царапин и защищает корпус во время падений. Силиконовые чехлы бывают не только полностью прозрачные, но и цветные.',
+    photos: [
+      '/img/materials/silicone/1.jpg',
+      '/img/materials/silicone/2.jpg',
+      '/img/materials/silicone/3.jpg',
+    ],
+    description: 'Силиконовый чехол надежно защищает устройство от падений и механических повреждений. Телефон плотно сидит в силиконовом чехле, закрытый со всех сторн.',
     points: [
-      'Neque porro quisquam estem eius',
-      'Qui dolorem ipsum quia',
-      'Adipisci velit, sed quia non numquam',
+      'Защищает все грани телефона',
+      'Вся цветовая гамма',
+      'Не скользит в руке',
+      'Не царапается',
     ],
   },
   plastic: {
     value: 'plastic',
     name: 'Пластик',
     mainImg: plastic,
-    photos: [photo, photo2, photo3],
-    description: 'На складе всегда есть большое количество пластиковых чехлов под нанесение логотипа уф печатью на все модели iPhone от iPhone 5 до iPhone XS.',
+    photos: [
+      '/img/materials/plastic/1.jpg',
+      '/img/materials/plastic/2.jpg',
+      '/img/materials/plastic/3.jpg',
+    ],
+    description: 'Пластик матовый или глянцевый. Изображение на такой чехол наносится на весь корпус включая боковые грани смартфона. Изображение продолжается на краях чехла.',
     points: [
-      'Neque porro quisquam estem eius',
-      'Qui dolorem ipsum quia',
-      'Adipisci velit, sed quia non numquam',
+      'Изображение не выцветает',
+      'Полная запечатка',
+      'Гладкая поверхность',
     ],
   },
   softtouch: {
     name: 'Soft-Touch',
     value: 'softtouch',
     mainImg: softtouch,
-    photos: [photo, photo2, photo3],
-    description: 'Обратите внимание на возможность заказа пластиковых чехлов с покрытием Soft Touch ( Софт Тач ). По стоимости они примерно одинаковые, а по качеству, Soft Touch на ощупь гораздо приятнее: обладает похожим на резину покрытием, которое хочется держать в руках.',
+    photos: [
+      '/img/materials/softtouch/1.jpg',
+      '/img/materials/softtouch/2.jpg',
+      '/img/materials/softtouch/3.jpg',
+    ],
+    description: 'Sof-touch пластик хорошо защищает корпус телефона от сколов и царапин. Матовое софт тач покрытие исключает блики и создает эффект теплоты на поверхности всего чехла.',
     points: [
-      'Neque porro quisquam estem eius',
-      'Qui dolorem ipsum quia',
-      'Adipisci velit, sed quia non numquam',
+      'Не гнется',
+      'Не скользит в руке',
+      'Приятный на ощупь',
+      'Вся цветовая гамма',
     ],
   },
 };

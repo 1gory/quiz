@@ -6,6 +6,7 @@ import Title from '../generic/Title';
 import Offer from '../generic/Offer';
 import Form from './Form';
 import restart from './restart.svg';
+import Preloader from '../generic/Preloader';
 
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
@@ -60,11 +61,12 @@ const onClick = () => {
 
 export default ({ currentStep, handleSubmit }) => (
   <Wrapper hidden={currentStep !== 9}>
+    {currentStep === 9 && <Preloader />}
     <Content>
       <Title>
         Поздравляем!
         <Br />
-        Вы прошли тест!
+         Вы прошли тест!
       </Title>
       <FormWrapper>
         <Offer

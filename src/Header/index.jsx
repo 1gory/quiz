@@ -111,7 +111,7 @@ export default ({ onClick }) => (
         <a href="/"><Logo src={logo} /></a>
       </LogoWrapper>
       <Contacts>
-        <PhoneLink href="tel:+7(499)409-08-18">8 499 409 08 18</PhoneLink>
+        <PhoneLink href="tel:+7(495)032-55-05">8 495 032-55-05</PhoneLink>
         <CallbackLink onClick={onClick}>Обратный звонок</CallbackLink>
       </Contacts>
     </Content>

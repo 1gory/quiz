@@ -53,24 +53,30 @@ export default class extends Component {
   }
 
   handleClick(name) {
-    const { selectedBrands } = this.state;
+    const { selectedBrands, customBrand } = this.state;
     const index = selectedBrands.indexOf(name);
     if (index === -1) {
-      selectedBrands.push(name);
+      name && selectedBrands.push(name);
     } else {
       selectedBrands.splice(index, 1);
     }
 
-    this.setState({ selectedBrands });
-    this.props.onChange(selectedBrands);
+    this.setState({ selectedBrands }, () => {
+      this.props.onChange(selectedBrands.concat([customBrand]));
+    });
   }
 
   isNextStepAllowed() {
-    return this.state.selectedBrands.length !== 0;
+    return this.state.selectedBrands.length !== 0 || this.state.customBrand;
   }
 
   changeCustomBrand(value) {
-    this.setState({ customBrand: value });
+    this.setState({
+      customBrand: value,
+    }, () => {
+      const { selectedBrands, customBrand } = this.state;
+      this.props.onChange(selectedBrands.concat([customBrand]));
+    });
   }
 
   render() {

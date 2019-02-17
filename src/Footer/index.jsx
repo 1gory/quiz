@@ -85,7 +85,7 @@ export default () => (
     <Content>
       <PrivacyPolicyLink href="./politika.html">Политика конфиденциальности</PrivacyPolicyLink>
       <ContactWrapper>
-        <PhoneLink href="tel:+7(499)409-08-18">8 499 409 08 18</PhoneLink>
+        <PhoneLink href="tel:+7(495)032-55-05">8 495 032-55-05</PhoneLink>
         <MailLink href="mailto:info@souvenirstudio.ru">info@souvenirstudio.ru</MailLink>
       </ContactWrapper>
       <Copyright>© SouvenirStudio 2018, г. Москва</Copyright>

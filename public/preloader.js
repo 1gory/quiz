@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const preloader = document.getElementsByClassName('load')[0];
   new Promise((resolve) => {
     setTimeout(() => {
-      preloader.classList.add('load__hiden');
+      preloader.classList.add('load__hidden');
       resolve();
     }, 500);
   }).then(() => (

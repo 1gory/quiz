@@ -4,6 +4,7 @@ import Button from '../generic/Button';
 import Title from '../generic/Title';
 import reasons from './reasons.png';
 import Offer from '../generic/Offer';
+import Preloader from '../generic/Preloader';
 
 const Wrapper = styled.section`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
@@ -68,6 +69,7 @@ const Br = styled.br`
 
 export default ({ currentStep, toNextStep }) => (
   <Wrapper hidden={currentStep !== 0}>
+    <Preloader />
     <Content>
       <Title>
         Пройдите тест за 2 минуты и получите самое выгодное

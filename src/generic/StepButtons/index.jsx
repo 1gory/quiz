@@ -32,8 +32,10 @@ const StepButton = styled.button`
   border: none;
   color: #fff;
 
-  &:hover {
-    background-color: #ff6067;
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: #ff6067;
+    }
   }
 `;
 

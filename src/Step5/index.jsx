@@ -53,23 +53,25 @@ export default class extends Component {
   }
 
   handleClick(color) {
-    const { selectedColors } = this.state;
+    const { selectedColors, customColor } = this.state;
     const index = selectedColors.indexOf(color);
     if (index === -1) {
-      selectedColors.push(color);
+      color && selectedColors.push(color);
     } else {
       selectedColors.splice(index, 1);
     }
 
-    this.setState({
-      selectedColors,
-    }, () => this.props.onChange(this.state));
+    this.setState(
+      { selectedColors },
+      () => (this.props.onChange(selectedColors.concat([customColor]))),
+    );
   }
 
   handleChangeCustomColor(color) {
+    const { selectedColors, customColor } = this.state;
     this.setState({
       customColor: color,
-    }, () => this.props.onChange(this.state));
+    }, () => (this.props.onChange(selectedColors.concat([customColor]))));
   }
 
   render() {

@@ -22,7 +22,7 @@ const BandLogoWrapper = styled.div`
 `;
 
 const BrandLogo = styled.img`
-  max-height: 50px;
+  height: 50px;
   max-width: 100px;
 `;
 

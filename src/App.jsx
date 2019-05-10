@@ -75,7 +75,9 @@ export default class extends Component {
     this.setState(prevState => ({
       currentStep: prevState.currentStep + 1,
       percents: 100 * (prevState.currentStep + 1) / StepsCount,
-    }));
+    }), () => {
+      ym(53600680, 'reachGoal', `step${this.state.currentStep}`);
+    });
   }
 
   toPrevStep() {
@@ -90,6 +92,7 @@ export default class extends Component {
       brand, material, printing, count, color, date, file, packaging,
     } = this.state;
 
+    ym(53600680, 'reachGoal', 'order');
     const form = new FormData();
 
     if (file) {

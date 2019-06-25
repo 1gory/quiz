@@ -2,7 +2,7 @@
 
 class AmoCrmConnector
 {
-    const SUBDOMAIN = 'b2bsouvenir';
+    const SUBDOMAIN = 'suvstudio';
 
     private $cookiePath;
 
@@ -14,8 +14,8 @@ class AmoCrmConnector
     public function authentication()
     {
         $user = [
-            'USER_LOGIN' => 'sharikisfoto@yandex.ru',
-            'USER_HASH' => 'd853d4c0115c7c1c30e0238179d3d4cf42a3d4b6',
+            'USER_LOGIN' => 'suvstudio@yandex.ru',
+            'USER_HASH' => '7e91bca656583e2be7de43f175491f5341baa445',
         ];
 
         $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/private/api/auth.php?type=json';
@@ -36,24 +36,23 @@ class AmoCrmConnector
             [
                 'name' => $data['name'] . ' ' . $data['phone'],
                 'date_create' => (new \DateTime())->format('U'),
-                'status_id' => 21185296,
                 'custom_fields' => [
                     [
-                        'id' => 511361, // источник
+                        'id' => 407191, // источник
                         'values' => [
                             [
-                                'value' => '1077691',
+                                'value' => '576739', // print.souvenirstudio.ru
                             ],
                         ],
                     ],
-//                    [
-//                        'id' => 629489, // utm_source
-//                        'values' => [
-//                            [
-//                                'value' => $data['utm_source'],
-//                            ],
-//                        ],
-//                    ],
+                    [
+                        'id' => 407189, // utm_source
+                        'values' => [
+                            [
+                                'value' => $data['utm_source'],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -78,7 +77,7 @@ class AmoCrmConnector
                 ],
                 'custom_fields' => [
                     [
-                        'id' => 511033, //телефон
+                        'id' => 407103, //телефон
                         'values' => [
                             [
                                 'value' => $data['phone'],
@@ -87,7 +86,7 @@ class AmoCrmConnector
                         ],
                     ],
                     [
-                        'id' => 511035, //Email
+                        'id' => 407105, //Email
                         'values' => [
                             [
                                 'value' => $data['email'],
@@ -119,8 +118,6 @@ class AmoCrmConnector
             'text' => $data['subject'],
             'note_type' => '4',
             'created_at' => (new \DateTime())->format('U'),
-            'responsible_user_id' => 1435408,
-            'created_by' => 1435408,
         ];
 
         $data['message'] && $notes['add'][] = [
@@ -129,8 +126,6 @@ class AmoCrmConnector
             'text' => $data['message'],
             'note_type' => '4',
             'created_at' => (new \DateTime())->format('U'),
-            'responsible_user_id' => 1435408,
-            'created_by' => 1435408,
         ];
 
         $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/api/v2/notes';
@@ -166,55 +161,5 @@ class AmoCrmConnector
         curl_close($curl);
 
         return $out;
-    }
-
-    public function updateLead($orderId, $data)
-    {
-        $leads['request']['leads']['update'] = [
-            [
-                'id' => $orderId,
-                'last_modified' => ((int)(new \DateTime())->format('U') + 10),
-                'custom_fields' => [
-                    [
-                        'id' => 520743, // send sms
-                        'values' => [
-                            [
-                                'value' => 'https://gostprint.ru/sendtracksms?crmid=' . $orderId,
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ];
-
-        $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/private/api/v2/json/leads/set';
-        $this->sendCurlRequest($leads, $url);
-    }
-
-    public function getLeadInfo($id)
-    {
-        $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/private/api/v2/json/leads/list?id[]=' . $id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_USERAGENT, 'amoCRM-API-client/1.0');
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt'); #PHP>5.3.6 dirname(__FILE__) -> __DIR__
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-
-        $out = curl_exec($curl);
-        curl_close($curl);
-
-        return $out;
-    }
-
-    public function updateLeads($leads)
-    {
-        $request['request']['leads']['update'] = $leads;
-
-        $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/private/api/v2/json/leads/set';
-        return $this->sendCurlRequest($request, $url);
     }
 }

@@ -104,8 +104,8 @@ export default ({ onClick }) => (
   <Wrapper>
     <Content>
       <Description>
-        <TopPart>Лучшие цены на рынке по принтам на чехлах!</TopPart>
-        <BottomPart>Круглосуточная подержка в Москве.</BottomPart>
+        <TopPart>Лучшие цены на рынке по печати на чехлах!</TopPart>
+        <BottomPart>Круглосуточное производство в Москве.</BottomPart>
       </Description>
       <LogoWrapper>
         <a href="/"><Logo src={logo} /></a>

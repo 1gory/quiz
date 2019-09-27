@@ -41,7 +41,7 @@ class AmoCrmConnector
                         'id' => 407191, // источник
                         'values' => [
                             [
-                                'value' => '576739', // print.souvenirstudio.ru
+                                'value' => '953589', // case.souvenirstudio.ru
                             ],
                         ],
                     ],

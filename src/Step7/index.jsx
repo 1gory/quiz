@@ -4,7 +4,6 @@ import Dropzone from 'react-dropzone';
 import Title from '../generic/StepTitle';
 import StepButtons from '../generic/StepButtons';
 import uploadLogo from './upload.svg';
-
 import i1 from './1.jpg';
 import i2 from './2.jpg';
 import i3 from './3.jpg';
@@ -130,7 +129,6 @@ const ChooseFilesButton = ({ text, active, onClick }) => (
 );
 
 const onDrop = (acceptedFiles, rejectedFiles, onChange) => {
-  console.log(acceptedFiles);
   acceptedFiles.forEach((file) => {
     const reader = new FileReader();
     reader.onload = () => {

@@ -15,7 +15,7 @@ class AmoCrmConnector
     {
         $user = [
             'USER_LOGIN' => 'suvstudio@yandex.ru',
-            'USER_HASH' => '7e91bca656583e2be7de43f175491f5341baa445',
+            'USER_HASH' => 'a3ba395fb36811406a9b46e9ecc2d6bd0ebed3b1',
         ];
 
         $url = 'https://' . self::SUBDOMAIN . '.amocrm.ru/private/api/auth.php?type=json';
